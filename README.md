@@ -4,12 +4,12 @@
 
 ### Todo:
 
-- [ ] Decide the plugins that are going to be used
-  - [ ] Styling stuff
+- [x] Decide the plugins that are going to be used
+  - [x] Styling stuff
     - UnoCSS or TailwindCSS
     - RadixUI
-  - [ ] Other stuff
-    - [ ] React
+  - [x] Other stuff
+    - [x] React
 - [ ] Learn the "Getting Started"
 - [ ] Create To-do
 - [ ] Create Random daily quote generator
