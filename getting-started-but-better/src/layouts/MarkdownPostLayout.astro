@@ -1,0 +1,26 @@
+---
+import Layout from './Layout.astro'
+const { frontmatter } = Astro.props
+---
+
+<Layout title={frontmatter.title}>
+    <p>{frontmatter.pubDate.slice(0, 10)}</p>
+    <p><em>{frontmatter.description}</em></p>
+    <p>Written by: {frontmatter.author}</p>
+    <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
+    <div class="my-5 flex flex-wrap">
+        {
+            frontmatter.tags.map((tag: any) => (
+                <p class="text-md mx-1 rounded-xl bg-gray-700 py-2 px-3 transition-all hover:bg-slate-500  dark:bg-white dark:hover:bg-white/70">
+                    <a
+                        class="text-indigo-50 dark:text-indigo-600"
+                        href={`/tags/${tag}`}
+                    >
+                        {tag}
+                    </a>
+                </p>
+            ))
+        }
+    </div>
+    <slot />
+</Layout>

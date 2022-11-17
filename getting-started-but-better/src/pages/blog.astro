@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro'
+const allPosts = await Astro.glob('../pages/posts/*.md')
+---
+
+<Layout title="My Astro Learning Blog">
+    <section class="mx-auto max-w-3xl">
+        <p class="py-3">
+            This is where I will post about my journey learning Astro.
+        </p>
+        <ul class="py-3 pb-3">
+            {
+                allPosts.map((post) => (
+                    <a href={post.url} class=" font-mono text-lg">
+                        <li class="group relative my-4 inline-flex w-full items-center">
+                            <span class="p-3">{post.frontmatter.title}</span>
+                            <span class="absolute left-0 -z-10 h-3 w-full bg-indigo-400 group-hover:h-full group-hover:transition-all" />
+                        </li>
+                    </a>
+                ))
+            }
+        </ul>
+    </section>
+</Layout>

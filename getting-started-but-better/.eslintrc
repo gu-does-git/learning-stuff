@@ -1,0 +1,9 @@
+{
+	"extends": [
+		"plugin:astro/recommended",
+	],
+	"plugins": [
+		"eslint-plugin-tailwindcss",
+		"eslint-plugin-astro"
+	],
+}

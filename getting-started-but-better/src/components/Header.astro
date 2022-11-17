@@ -1,8 +1,14 @@
 ---
 import ThemeToggle from './ThemeToggle'
+const links = [
+    { url: '/', title: 'Home' },
+    { url: '/about', title: 'About' },
+    { url: '/blog', title: 'Blog' },
+    { url: '/tags', title: 'Tags' },
+]
 ---
 
-<header>
+<header class="relative z-10">
     <nav
         class="flex h-12 w-full flex-row items-center bg-slate-200 dark:bg-gray-800"
     >
@@ -16,29 +22,37 @@ import ThemeToggle from './ThemeToggle'
             </a>
         </div>
 
-        <div class="mx-auto flex space-x-4">
-            <a
-                href="/"
-                class="text-base text-gray-800 transition duration-100 ease-linear hover:text-black dark:text-slate-200 dark:hover:text-white"
-                >Home</a
-            >
-            <a
-                href="/about"
-                class="text-base text-gray-800 transition duration-100 ease-linear hover:text-black dark:text-slate-200 dark:hover:text-white"
-                >About</a
-            >
-            <a
-                href="/blog"
-                class="text-base text-gray-800 transition duration-100 ease-linear hover:text-black dark:text-slate-200 dark:hover:text-white"
-                >Blog</a
-            >
-            <a
-                href="/tags"
-                class="text-base text-gray-800 transition duration-100 ease-linear hover:text-black dark:text-slate-200 dark:hover:text-white"
-                >Tags</a
-            >
+        <div class="nav-links mx-auto flex space-x-4">
+            {
+                links.map((link) => (
+                    <a
+                        href={link.url}
+                        class="rounded px-3 py-1  text-base text-gray-800 transition duration-100 ease-linear hover:text-gray-900 dark:text-slate-200 dark:hover:text-white [&.active]:bg-indigo-600 [&.active]:text-slate-100 [&.active]:hover:text-white"
+                    >
+                        {link.title}
+                    </a>
+                ))
+            }
         </div>
 
         <ThemeToggle client:load />
     </nav>
 </header>
+<script is:inline>
+    const navLinks = document.querySelectorAll('.nav-links a')
+
+    navLinks.forEach((link) => {
+        link.classList.remove('active')
+
+        // `slice` here to remove the first `/` in pathname
+        const currentPath = window.location.pathname
+
+        // `link.href` returns a whole url, such as: "https://somedomain.com/posts" and we only need the last part
+        const hrefArray = link.href.split('/')
+        const thisPath = '/' + hrefArray[hrefArray.length - 1]
+
+        if (currentPath === thisPath) {
+            link.classList.add('active')
+        }
+    })
+</script>

@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro'
+const identity = {
+    firstName: 'Sarah',
+    country: 'Canada',
+    occupation: 'Technical Writer',
+    hobbies: ['photography', 'birdwatching', 'baseball'],
+}
+
+const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Astro', 'Writing Docs']
+
+const happy = true
+const finished = true
+const goal = 3
+---
+
+<Layout title="About Me">
+    <section>
+        <h2 class="text-xl">... and my new Astro site!</h2>
+
+        <p class="py-3">
+            I am working through Astro's introductory tutorial. This is the
+            second page on my website, and it's the first one I built myself!
+        </p>
+
+        <p class="py-3">
+            This site will update as I complete more of the tutorial, so keep
+            checking back and see how my journey is going!
+        </p>
+
+        <p class="py-3">Here are a few facts about me:</p>
+        <ul class="ml-10 list-disc py-3 pb-3">
+            <li>My name is {identity.firstName}.</li>
+            <li>
+                I live in {identity.country} and I work as a {
+                    identity.occupation
+                }.
+            </li>
+            {
+                identity.hobbies.length >= 2 && (
+                    <li>
+                        Two of my hobbies are: {identity.hobbies[0]} and{' '}
+                        {identity.hobbies[1]}
+                    </li>
+                )
+            }
+        </ul>
+        <p class="py-3">My skills are:</p>
+        <ul class="ml-10 list-disc pb-3">
+            {skills.map((skill) => <li class="skill">{skill}</li>)}
+        </ul>
+        {happy && <p class="py-3">I am happy to be learning Astro!</p>}
+
+        {finished && <p class="py-3">I finished this tutorial!</p>}
+
+        {
+            goal === 3 ? (
+                <p class="py-3">My goal is to finish in 3 days.</p>
+            ) : (
+                <p class="py-3">My goal is not 3 days.</p>
+            )
+        }
+    </section>
+</Layout>
